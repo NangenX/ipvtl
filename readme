@@ -1,0 +1,47 @@
+#!/bin/bash
+
+
+
+echo "Downloading ipvtl Software \n"
+
+cd /home
+
+wget http://www.ipvideotrans.com/download/ipvtl_trial-x64.tar.xz
+
+
+
+echo "Extracting ipvtl Software \n"
+
+tar xf ipvtl_trial-x64.tar.xz
+
+rm -r ipvtl_trial-x64.tar.xz
+
+
+
+echo "Downloading Fake Time Software \n"
+sudo apt install git -y
+git clone https://github.com/wolfcw/libfaketime.git
+
+cd /home/libfaketime
+
+
+
+echo "Installing Fake Time Software \n"
+sudo apt install gcc -y
+make
+
+make install
+
+
+
+echo "Cracking ipvtl With FakeTime \n"
+
+today=`date +'%y-%m-%d %H:%M:%S'`
+
+echo "Today is $today"
+
+faketime "$today" /home/ipvtl/ipvtl_16ch_trial
+
+
+
+echo "Have A Nice Time, Job Completed"
